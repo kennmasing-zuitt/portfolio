@@ -240,6 +240,10 @@ body {
     background: linear-gradient(90deg, #706993, #70a0af);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    /* Italic glyphs lean past the box the gradient paints; pad each line so their tips stay visible */
+    padding-right: 0.12em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 
 .hover-lift {
