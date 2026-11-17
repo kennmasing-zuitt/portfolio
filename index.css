@@ -19,6 +19,11 @@
     --neo-shadow-lg: 6px 6px 0px #706993;
 }
 
+/* Keep anchor targets clear of the fixed header */
+.scroll-mt-5 {
+    scroll-margin-top: 6rem;
+}
+
 body {
     background-color: var(--color-bg);
     color: var(--color-ink);
