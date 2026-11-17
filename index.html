@@ -1807,5 +1807,28 @@
                 <div>// ALL SYSTEMS OPERATIONAL</div>
             </div>
         </div>
+        <script>
+            function filterProjects(category, button) {
+                document
+                    .querySelectorAll(".project-tab-btn")
+                    .forEach((b) => b.classList.toggle("active-tab", b === button));
+                document.querySelectorAll(".project-item").forEach((item) => {
+                    const match =
+                        category === "all" ||
+                        item.dataset.category.split(" ").includes(category);
+                    item.classList.toggle("d-none", !match);
+                });
+            }
+
+            function copyEmail() {
+                const label = document.getElementById("emailCopyLabel");
+                const email = document.getElementById("emailAddress").textContent.trim();
+                navigator.clipboard
+                    .writeText(email)
+                    .then(() => (label.textContent = "COPIED"))
+                    .catch(() => (label.textContent = "COPY FAILED"))
+                    .finally(() => setTimeout(() => (label.textContent = "COPY"), 1500));
+            }
+        </script>
     </body>
 </html>
