@@ -148,6 +148,10 @@ body {
     border-bottom: var(--border-ink) !important;
 }
 
+.border-ink-top {
+    border-top: var(--border-ink) !important;
+}
+
 /* Nav Link Active */
 .tactical-nav-link {
     font-family: "JetBrains Mono", monospace;
