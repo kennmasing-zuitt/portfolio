@@ -58,9 +58,18 @@ body {
     background-color: var(--color-white);
 }
 
-.neo-box-sm {
+.neo-box-sm,
+.workflow-step {
     border: var(--border-ink);
     box-shadow: var(--neo-shadow-sm);
+}
+
+/* How I Work step card: small neo box that lifts on hover (see .hover-lift) */
+.workflow-step {
+    height: 100%;
+    padding: 1rem;
+    border-radius: var(--bs-border-radius-lg);
+    background-color: var(--color-white);
 }
 
 .neo-box-lg {
@@ -82,12 +91,12 @@ body {
 
 .neo-btn:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px #706993;
+    box-shadow: var(--neo-shadow-lg);
 }
 
 .neo-btn:active {
     transform: translate(1px, 1px);
-    box-shadow: 2px 2px 0px #706993;
+    box-shadow: var(--neo-shadow-sm);
 }
 
 /* Section divider lines */
@@ -246,13 +255,15 @@ body {
     box-decoration-break: clone;
 }
 
-.hover-lift {
+.hover-lift,
+.workflow-step {
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
 }
 
-.hover-lift:hover {
+.hover-lift:hover,
+.workflow-step:hover {
     transform: translateY(-4px);
-    box-shadow: 8px 8px 0px #706993;
+    box-shadow: var(--neo-shadow-lg);
 }
