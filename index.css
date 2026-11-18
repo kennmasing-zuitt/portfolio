@@ -267,3 +267,26 @@ body {
     transform: translateY(-4px);
     box-shadow: var(--neo-shadow-lg);
 }
+
+/* Project preview label: one real fact per card, pinned bottom-left of the preview */
+.preview-label {
+    position: absolute;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--bs-border-radius);
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+/* Top-right variant, for previews whose content fills the bottom-left */
+.preview-label-top-end {
+    left: auto;
+    bottom: auto;
+    top: 1.5rem;
+    right: 1.5rem;
+}
