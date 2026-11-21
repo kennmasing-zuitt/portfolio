@@ -1,0 +1,123 @@
+name: Release
+
+# On every push to main, release-please keeps one "release" PR up to date: it picks the next
+# version from the Conventional Commits since the last release (fix: -> patch, feat: -> minor,
+# feat!: / BREAKING CHANGE -> major; chore:/docs:/ci:/style:/refactor: -> no release).
+# Merging that PR tags vX.Y.Z, creates the GitHub Release, and the image job builds and pushes
+# ghcr.io/<owner>/portfolio:X.Y.Z from the tagged commit.
+#
+# Run manually (Actions -> Release -> Run workflow) to build the image of an existing release.
+# It never overwrites an image that already exists.
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+        inputs:
+            version:
+                description: Existing release, without the v (e.g. 1.0.0)
+                required: true
+
+concurrency:
+    group: release
+    cancel-in-progress: false
+
+jobs:
+    release-please:
+        name: Release PR / tag
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        permissions:
+            contents: write
+            pull-requests: write
+            issues: write
+        outputs:
+            created: ${{ steps.release.outputs.release_created }}
+            version: ${{ steps.release.outputs.version }}
+        steps:
+            - uses: googleapis/release-please-action@v5
+              id: release
+
+    plan:
+        name: Image to build
+        needs: release-please
+        if: always()
+        runs-on: ubuntu-latest
+        timeout-minutes: 2
+        outputs:
+            version: ${{ steps.plan.outputs.version }}
+        steps:
+            - name: Plan
+              id: plan
+              env:
+                  EVENT: ${{ github.event_name }}
+                  CREATED: ${{ needs.release-please.outputs.created }}
+                  RELEASED: ${{ needs.release-please.outputs.version }}
+                  INPUT: ${{ inputs.version }}
+              run: |
+                  if [ "$EVENT" = workflow_dispatch ]; then
+                      [[ "$INPUT" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::Not a version: $INPUT"; exit 1; }
+                      version=$INPUT
+                  elif [ "$CREATED" = true ]; then
+                      version=$RELEASED
+                  else
+                      version=
+                  fi
+                  echo "version=$version" >> "$GITHUB_OUTPUT"
+                  echo "Image to build: ${version:-none}"
+
+    image:
+        name: Image ${{ needs.plan.outputs.version }}
+        needs: plan
+        if: always() && needs.plan.outputs.version != ''
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+        permissions:
+            contents: read
+            packages: write
+        env:
+            VERSION: ${{ needs.plan.outputs.version }}
+        steps:
+            # Build exactly what was tagged
+            - uses: actions/checkout@v7
+              with:
+                  ref: v${{ needs.plan.outputs.version }}
+
+            - name: Image name and tagged commit
+              id: meta
+              run: |
+                  echo "image=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/portfolio" >> "$GITHUB_OUTPUT"
+                  echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+            - uses: docker/setup-buildx-action@v4
+
+            - uses: docker/login-action@v4
+              with:
+                  registry: ghcr.io
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
+
+            # Version tags are immutable: a published version is never replaced
+            - name: Refuse to overwrite an existing image
+              env:
+                  portfolio: ${{ steps.meta.outputs.image }}
+              run: |
+                  if docker buildx imagetools inspect "$portfolio:$VERSION" >/dev/null 2>&1; then
+                      echo "::error::$portfolio:$VERSION already exists"
+                      exit 1
+                  fi
+
+            - uses: docker/build-push-action@v7
+              with:
+                  context: .
+                  platforms: linux/amd64
+                  push: true
+                  tags: ${{ steps.meta.outputs.image }}:${{ env.VERSION }}
+                  labels: |
+                      org.opencontainers.image.version=${{ env.VERSION }}
+                      org.opencontainers.image.revision=${{ steps.meta.outputs.sha }}
+                      org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+
+            - name: Summary
+              run: echo "Pushed \`${{ steps.meta.outputs.image }}:$VERSION\`" >> "$GITHUB_STEP_SUMMARY"
