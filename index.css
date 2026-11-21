@@ -162,6 +162,12 @@ body {
     color: #45645e !important;
 }
 
+/* Skill rows: the label keeps one line and sits flush right */
+#skills li > strong {
+    white-space: nowrap;
+    text-align: right;
+}
+
 .border-ink {
     border: var(--border-ink) !important;
 }
