@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/kennmasing-zuitt/portfolio/compare/v1.0.0...v1.0.1) (2026-11-21)
+
+
+### Bug Fixes
+
+* keep release-please files out of the site image ([#5](https://github.com/kennmasing-zuitt/portfolio/issues/5)) ([325245b](https://github.com/kennmasing-zuitt/portfolio/commit/325245b946c6bc8e6e1b8bea9c0368613e7f13a7))
+
 ## 1.0.0 (2026-11-21)
 
 
