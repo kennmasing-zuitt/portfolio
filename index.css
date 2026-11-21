@@ -158,6 +158,10 @@ body {
     color: #856b31 !important;
 }
 
+.text-secondary-custom {
+    color: #45645e !important;
+}
+
 .border-ink {
     border: var(--border-ink) !important;
 }
