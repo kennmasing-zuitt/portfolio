@@ -154,6 +154,10 @@ body {
     color: #2e4c46 !important;
 }
 
+.text-gold-custom {
+    color: #856b31 !important;
+}
+
 .border-ink {
     border: var(--border-ink) !important;
 }
