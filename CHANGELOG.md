@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/kennmasing-zuitt/portfolio/compare/v1.0.1...v1.1.0) (2026-11-21)
+
+
+### Features
+
+* Agentic Loop card diagram preview and full-diagram button ([838a519](https://github.com/kennmasing-zuitt/portfolio/commit/838a5195ba5ffa07239f9595e9f65db5bbf195cd))
+
 ## [1.0.1](https://github.com/kennmasing-zuitt/portfolio/compare/v1.0.0...v1.0.1) (2026-11-21)
 
 
