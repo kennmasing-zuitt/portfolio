@@ -100,10 +100,10 @@ body {
 }
 
 /* Resume button colours, picked by Kenneth from a reference image: deeper purple fill,
-   dark purple-grey edge and shadow. !important because Bootstrap's .btn loads later. */
+   dark purple-grey shadow, no visible border (!important: Bootstrap's .btn:active sets one). */
 .neo-btn-dark {
     background-color: #675c86 !important;
-    border: 1.5px solid #454053 !important;
+    border-color: transparent !important;
     box-shadow: 4px 4px 0px #454053;
 }
 
