@@ -4,8 +4,7 @@
     "packages": {
         ".": {
             "release-type": "simple",
-            "package-name": "portfolio",
-            "release-as": "1.0.0"
+            "package-name": "portfolio"
         }
     }
 }
