@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/kennmasing-zuitt/portfolio/compare/v1.1.0...v1.1.1) (2026-11-21)
+
+
+### Bug Fixes
+
+* make AI AGENTS badge text readable ([#8](https://github.com/kennmasing-zuitt/portfolio/issues/8)) ([f123890](https://github.com/kennmasing-zuitt/portfolio/commit/f123890837cd3b8c84caa147c2090bf1e837b169))
+
 ## [1.1.0](https://github.com/kennmasing-zuitt/portfolio/compare/v1.0.1...v1.1.0) (2026-11-21)
 
 
