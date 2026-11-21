@@ -99,19 +99,20 @@ body {
     box-shadow: var(--neo-shadow-sm);
 }
 
-/* Dark-edged variant for purple-filled buttons (a purple shadow would merge with the fill).
-   !important because Bootstrap's .btn loads later and resets the border. */
+/* Resume button colours, picked by Kenneth from a reference image: deeper purple fill,
+   dark purple-grey edge and shadow. !important because Bootstrap's .btn loads later. */
 .neo-btn-dark {
-    border: 1.5px solid var(--color-ink) !important;
-    box-shadow: 4px 4px 0px var(--color-ink);
+    background-color: #675c86 !important;
+    border: 1.5px solid #454053 !important;
+    box-shadow: 4px 4px 0px #454053;
 }
 
 .neo-btn-dark:hover {
-    box-shadow: 6px 6px 0px var(--color-ink);
+    box-shadow: 6px 6px 0px #454053;
 }
 
 .neo-btn-dark:active {
-    box-shadow: 2px 2px 0px var(--color-ink);
+    box-shadow: 2px 2px 0px #454053;
 }
 
 /* Section divider lines */
