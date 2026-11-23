@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/kennmasing-zuitt/portfolio/compare/v1.1.1...v1.2.0) (2026-11-23)
+
+
+### Features
+
+* show the Agentic Loop Reviewer as live ([286b80e](https://github.com/kennmasing-zuitt/portfolio/commit/286b80e838c41f08aa674f204060d61222713173))
+
 ## [1.1.1](https://github.com/kennmasing-zuitt/portfolio/compare/v1.1.0...v1.1.1) (2026-11-21)
 
 
