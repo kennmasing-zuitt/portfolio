@@ -1,7 +1,7 @@
 name: Publish image
 
 # Builds the Docker image on every PR (no push) and publishes it to GHCR on main:
-#   ghcr.io/<owner>/<image>:sha-<7-char commit>  (pinned in zuitt-demo-infra's image_tags)
+#   ghcr.io/<owner>/<image>:sha-<7-char commit>  (pinned in masing-demo-infra's image_tags)
 # Run it by hand with a commit to rebuild an older version.
 on:
   push:
