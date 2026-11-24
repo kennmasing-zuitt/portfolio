@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/kennmasing-zuitt/portfolio/compare/v1.2.0...v1.2.1) (2026-11-24)
+
+
+### Bug Fixes
+
+* update CV with REST API experience ([#12](https://github.com/kennmasing-zuitt/portfolio/issues/12)) ([6fa54f1](https://github.com/kennmasing-zuitt/portfolio/commit/6fa54f1a6a4ab229d146243e8e8b98e2fc34acdc))
+
 ## [1.2.0](https://github.com/kennmasing-zuitt/portfolio/compare/v1.1.1...v1.2.0) (2026-11-23)
 
 
